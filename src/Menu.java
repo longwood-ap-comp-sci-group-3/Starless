@@ -20,8 +20,8 @@ public class Menu extends BasicGameState {
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 	bruh = new Image("res/download.jpg"); // Image example.
-	playNow = new Image("res/button.jpg");
-	exitGame = new Image ("res/button.jpg");
+	 playNow = new Image("res/button.png");
+	exitGame = new Image ("res/button.png");
 
 		
 	}
@@ -33,16 +33,17 @@ public class Menu extends BasicGameState {
 		exitGame.draw(400, 200);
 		g.drawString(mouse, 10, 25);
 		g.drawImage(bruh, bruhx, bruhy);
-		g.fillOval(125, 125, 100, 100);;
+		g.fillOval(75, 160, 100, 100);
+		
 	}
 
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		Input input = gc.getInput();
-		if(input.isKeyDown(Input.KEY_UP)) {bruhy--;;}
-		if(input.isKeyDown(Input.KEY_DOWN)) {bruhy++;}
-		if(input.isKeyDown(Input.KEY_LEFT)) {bruhx--;}
-		if(input.isKeyDown(Input.KEY_RIGHT)) {bruhx++;}
+		if(input.isKeyDown(Input.KEY_UP)) {bruhy -= 2;;}
+		if(input.isKeyDown(Input.KEY_DOWN)) {bruhy += 2;}
+		if(input.isKeyDown(Input.KEY_LEFT)) {bruhx -= 2;}
+		if(input.isKeyDown(Input.KEY_RIGHT)) {bruhx += 2;}
 		int xpos = input.getMouseX();
 		int ypos = input.getMouseY();
 		if((xpos>75 && xpos<175) && (ypos>160 && ypos < 260)) {
