@@ -10,6 +10,7 @@ public class Main extends StateBasedGame
 	public static final String gamename = "Starless";
 	public static final int menu = 0;
 	public static final int play = 1;
+	public static final int fight = 2;
 	
 	
   public Main(String gamename)
@@ -17,6 +18,7 @@ public class Main extends StateBasedGame
     super(gamename);
     this.addState(new Menu(menu));
     this.addState(new Play(play));
+    this.addState(new Fight(fight));
   }
   
   public static void main(String[] args) throws SlickException
@@ -36,6 +38,7 @@ public class Main extends StateBasedGame
 public void initStatesList(GameContainer gc) throws SlickException {
 	this.getState(menu).init(gc, this);
 	this.getState(play).init(gc, this);
+	this.getState(fight).init(gc, this);
 	this.enterState(menu);
 	
 }

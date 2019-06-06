@@ -51,12 +51,17 @@ public class Menu extends BasicGameState {
 				sbg.enterState(1);
 			}
 		}
+			
+			if((xpos> 200 && xpos<400) && (ypos>200 && ypos<360)) {
+				if(input.isMouseButtonDown(0)) {
+					sbg.enterState(2);
+				}
+		}
 		
 		
 		mouse = "X:" + xpos + " Y:" + ypos;
-		}
 		
-	
+	}
 
 
 	public int getID() {

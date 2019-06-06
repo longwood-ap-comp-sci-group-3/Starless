@@ -2,9 +2,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 public class Play extends BasicGameState {
-
-	Animation gunshot, standattack1, knifetoss, playerattackSpecial;
-	Animation idle, enemyattack1, enemyattack2, enemyattackSpecial;
+	Animation idle;
 	Image worldMap;
 	Animation movingUp, movingDown, movingLeft, movingRight;
 	
@@ -54,20 +52,45 @@ public class Play extends BasicGameState {
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		Input input = gc.getInput();
+		
 		if(input.isKeyDown(Input.KEY_UP)) {idle = movingUp;
 		enemyPositionY += delta * .1f;
+		
+		if(enemyPositionY>300) {
+			enemyPositionY -= delta * 1f;
+		}
+			
 		}
 		if(input.isKeyDown(Input.KEY_DOWN)) {idle = movingDown;
 		enemyPositionY -= delta * .1f;
+		
+		if(enemyPositionY<-170) {
+			enemyPositionY += delta * 1f;
+		}
+		
 		}
 		if(input.isKeyDown(Input.KEY_LEFT)) {idle = movingLeft;
 		enemyPositionX += delta * .1f;
+		
+		if(enemyPositionX>400) {
+			enemyPositionX -= delta * 1f;
+		}
+		
 		}
 		if(input.isKeyDown(Input.KEY_RIGHT)) {idle = movingRight;
 		enemyPositionX -= delta * .1f;
+		
+		if(enemyPositionX<-300) {
+			enemyPositionX += delta * 1f;
 		}
-		int xpos = input.getMouseX();
-		int ypos = input.getMouseY();
+		
+		}
+		 if (enemyPositionX < -250 && enemyPositionX > -300 && enemyPositionY < -100 && enemyPositionY > -200) {
+			 sbg.enterState(2);
+		 }
+		
+		 
+		
 	}
 
 
