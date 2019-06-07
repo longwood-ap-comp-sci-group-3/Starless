@@ -11,6 +11,7 @@ public class Main extends StateBasedGame
 	public static final int menu = 0;
 	public static final int play = 1;
 	public static final int fight = 2;
+	public static final int pause = 3;
 	
 	
   public Main(String gamename)

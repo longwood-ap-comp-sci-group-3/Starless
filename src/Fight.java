@@ -8,8 +8,11 @@ import org.lwjgl.input.Keyboard;
 public class Fight extends BasicGameState {
 	Animation gunshot, standattack1, knifetoss, playerattackSpecial;
 	Animation idle, enemyattack1, enemyattack2, enemyattackSpecial;
+	
 	Image fightbattle, enemy, fight, fightbattlebackground;
+	
 	Music fightmusic;
+	boolean PAUSED = false;
 	float enemyPositionX = 0;
 	float enemyPositionY = 0;
 	public String mouse = "No input.";
@@ -35,19 +38,42 @@ public class Fight extends BasicGameState {
 		enemy.draw(enemyPositionX + 300,enemyPositionY + 150);
 		fight.draw(enemyPositionX + 70, enemyPositionY + 470);
 		
+		 if (PAUSED) {
+		        Color trans = new Color(0f,0f,0f,0.5f);
+		        g.setColor(trans);
+		        g.fillRect(0,0, 800, 600);
+		        g.drawString("Resume (R)", 250, 100);
+				g.drawString("Main Menu (M)", 250, 150);
+				g.drawString("Quit Game (Q)", 250, 200);
+		   }
+		
 		
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		Input input = gc.getInput();
+		int xpos = input.getMouseX();
+		int ypos = input.getMouseY();
+		mouse = "X:" + xpos + " Y:" + ypos;
+		
+		
 		if (!fightmusic.playing()) {
 			fightmusic.play(1, (float) 0.03);
 			}
 		
-		Input input = gc.getInput();
-		int xpos = input.getMouseX();
-		int ypos = input.getMouseY();
+		if(input.isKeyPressed(Input.KEY_ESCAPE)) {
+	    	  PAUSED = !PAUSED;
+		}
 		
-		mouse = "X:" + xpos + " Y:" + ypos;
+		
+		if (!PAUSED) {
+		
+		}
+		else {
+			
+		}
+		
+		
 		
 	}
 
