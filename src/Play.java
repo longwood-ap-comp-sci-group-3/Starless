@@ -3,6 +3,7 @@ import org.newdawn.slick.state.*;
 
 public class Play extends BasicGameState {
 	Animation idle;
+	Music playmusic;
 	Image worldMap;
 	Animation movingUp, movingDown, movingLeft, movingRight;
 	
@@ -25,6 +26,10 @@ public class Play extends BasicGameState {
 	Image[] walkDown = {new Image("res/5head.png"), new Image("res/button.jpg")};
 	Image[] walkLeft = {new Image("res/5head.png"), new Image("res/button.jpg")};
 	Image[] walkRight = {new Image("res/5head.png"), new Image("res/button.jpg")};
+	
+	playmusic = new Music("res/playmusic.ogg");
+	
+	
 
 	movingUp = new Animation(walkUp, duration, false);
 	movingDown = new Animation(walkDown, duration, false);
@@ -34,6 +39,7 @@ public class Play extends BasicGameState {
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		
 		worldMap.draw(enemyPositionX,enemyPositionY);
 		idle.draw(shiftX, shiftY);
 		g.drawString("X: " + enemyPositionX + "\nY: " + enemyPositionY, 0, 50);
@@ -51,6 +57,10 @@ public class Play extends BasicGameState {
 
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		if (!playmusic.playing()) {
+			playmusic.play(1, (float) 0.01);
+			}
+		
 		Input input = gc.getInput();
 		
 		if(input.isKeyDown(Input.KEY_UP)) {idle = movingUp;

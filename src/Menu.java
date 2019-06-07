@@ -5,8 +5,9 @@ import org.lwjgl.input.Keyboard;
 
 public class Menu extends BasicGameState {
 
-	Image playNow;
-	Image exitGame;
+	Image menubackground;
+	Music menumusic;
+	
 	
 	public String mouse = "No input.";
 	Image bruh;
@@ -19,43 +20,49 @@ public class Menu extends BasicGameState {
 	
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+	
 	bruh = new Image("res/download.jpg"); // Image example.
-	 playNow = new Image("res/button.png");
-	exitGame = new Image ("res/button.png");
-
+	menubackground = new Image("res/menubackground.png");
+	menumusic = new Music("res/menumusic.ogg");
 		
 	}
 
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawString("Starless", 400, 50);
-		playNow.draw(400, 100);
-		exitGame.draw(400, 200);
+		menubackground.draw(0,0);
 		g.drawString(mouse, 10, 25);
-		g.drawImage(bruh, bruhx, bruhy);
-		g.fillOval(75, 160, 100, 100);
 		
 	}
 
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		if (!menumusic.playing()) {
+			menumusic.play(1, (float) 0.05);
+			}
 		Input input = gc.getInput();
-		if(input.isKeyDown(Input.KEY_UP)) {bruhy -= 2;;}
-		if(input.isKeyDown(Input.KEY_DOWN)) {bruhy += 2;}
-		if(input.isKeyDown(Input.KEY_LEFT)) {bruhx -= 2;}
-		if(input.isKeyDown(Input.KEY_RIGHT)) {bruhx += 2;}
 		int xpos = input.getMouseX();
 		int ypos = input.getMouseY();
-		if((xpos>75 && xpos<175) && (ypos>160 && ypos < 260)) {
-			if(input.isMouseButtonDown(0)) {
-				sbg.enterState(1);
-			}
-		}
 			
-			if((xpos> 200 && xpos<400) && (ypos>200 && ypos<360)) {
+		
+			if((xpos> 240 && xpos<535) && (ypos>175 && ypos<250)) {
 				if(input.isMouseButtonDown(0)) {
+					menumusic.stop();
+					sbg.enterState(1);
+				}
+			}
+			
+			if((xpos>80 && xpos<800) && (ypos>0 && ypos < 100)) {
+				if(input.isMouseButtonDown(0)) {
+					menumusic.stop();
 					sbg.enterState(2);
 				}
+			}
+			
+				if((xpos>260 && xpos<532) && (ypos>384 && ypos<455)) {
+					if(input.isMouseButtonDown(0)) {
+					gc.exit();
+					}
 		}
 		
 		
