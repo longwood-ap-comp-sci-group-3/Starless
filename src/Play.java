@@ -27,7 +27,7 @@ public class Play extends BasicGameState {
 	Image[] walkLeft = {new Image("res/5head.png"), new Image("res/button.jpg")};
 	Image[] walkRight = {new Image("res/5head.png"), new Image("res/button.jpg")};
 	
-	playmusic = new Music("res/playmusic.ogg");
+	playmusic = new Music("res/playmusic.wav");
 	
 	
 
@@ -58,7 +58,7 @@ public class Play extends BasicGameState {
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		if (!playmusic.playing()) {
-			playmusic.play(1, (float) 0.01);
+			playmusic.play(1, (float) 1);
 			}
 		
 		Input input = gc.getInput();
@@ -105,7 +105,7 @@ public class Play extends BasicGameState {
 
 
 	public int getID() {
-		// TODO Auto-generated method stub
+		//TODO Auto-generated method stub
 		return 1;
 	}
 

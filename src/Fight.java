@@ -23,7 +23,7 @@ public class Fight extends BasicGameState {
 		enemy = new Image("res/test.png");
 		fight = new Image("res/fighticon.png");
 		fightbattlebackground = new Image("res/fightbattleresources.png");
-		fightmusic = new Music("res/fightmusic.ogg");
+		fightmusic = new Music("res/fightmusic.wav");
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {

@@ -23,7 +23,7 @@ public class Menu extends BasicGameState {
 	
 	bruh = new Image("res/download.jpg"); // Image example.
 	menubackground = new Image("res/menubackground.png");
-	menumusic = new Music("res/menumusic.ogg");
+	menumusic = new Music("res/menumusic.wav");
 		
 	}
 
@@ -38,7 +38,7 @@ public class Menu extends BasicGameState {
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		if (!menumusic.playing()) {
-			menumusic.play(1, (float) 0.05);
+			menumusic.play(1, (float) 1);
 			}
 		Input input = gc.getInput();
 		int xpos = input.getMouseX();
