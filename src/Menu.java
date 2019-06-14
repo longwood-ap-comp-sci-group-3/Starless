@@ -1,18 +1,15 @@
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+
 
 public class Menu extends BasicGameState {
-
 	Image menubackground;
 	Music menumusic;
 	
 	
 	public String mouse = "No input.";
-	Image bruh;
-	int bruhx = 200;
-	int bruhy = 200;
 	
 	public Menu(int state) {
 		
@@ -20,8 +17,7 @@ public class Menu extends BasicGameState {
 	
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-	
-	bruh = new Image("res/download.jpg"); // Image example.
+	 gc.setShowFPS(false);
 	menubackground = new Image("res/menubackground.png");
 	menumusic = new Music("res/menumusic.wav");
 		
@@ -31,7 +27,6 @@ public class Menu extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawString("Starless", 400, 50);
 		menubackground.draw(0,0);
-		g.drawString(mouse, 10, 25);
 		
 	}
 
@@ -45,21 +40,21 @@ public class Menu extends BasicGameState {
 		int ypos = input.getMouseY();
 			
 		
-			if((xpos> 240 && xpos<535) && (ypos>175 && ypos<250)) {
+			if((xpos> 100 && xpos<273) && (ypos>172 && ypos<212)) {
 				if(input.isMouseButtonDown(0)) {
 					menumusic.stop();
-					sbg.enterState(1);
+					sbg.enterState(1, new FadeOutTransition(Color.black, 2000), new FadeInTransition(Color.black, 1000));
 				}
 			}
 			
-			if((xpos>80 && xpos<800) && (ypos>0 && ypos < 100)) {
+			if((xpos>124 && xpos<670) && (ypos>44 && ypos < 104)) {
 				if(input.isMouseButtonDown(0)) {
 					menumusic.stop();
 					sbg.enterState(2);
 				}
 			}
 			
-				if((xpos>260 && xpos<532) && (ypos>384 && ypos<455)) {
+				if((xpos>528 && xpos<682) && (ypos>172 && ypos<212)) {
 					if(input.isMouseButtonDown(0)) {
 					gc.exit();
 					}
