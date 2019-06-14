@@ -1,17 +1,15 @@
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+
 
 public class Menu extends BasicGameState {
-
-	Image playNow;
-	Image exitGame;
+	Image menubackground;
+	Music menumusic;
+	
 	
 	public String mouse = "No input.";
-	Image bruh;
-	int bruhx = 200;
-	int bruhy = 200;
 	
 	public Menu(int state) {
 		
@@ -19,43 +17,47 @@ public class Menu extends BasicGameState {
 	
 
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-	bruh = new Image("res/download.jpg"); // Image example.
-	 playNow = new Image("res/button.png");
-	exitGame = new Image ("res/button.png");
-
+	 gc.setShowFPS(false);
+	menubackground = new Image("res/menubackground.png");
+	menumusic = new Music("res/menumusic.wav");
 		
 	}
 
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.drawString("Starless", 400, 50);
-		playNow.draw(400, 100);
-		exitGame.draw(400, 200);
-		g.drawString(mouse, 10, 25);
-		g.drawImage(bruh, bruhx, bruhy);
-		g.fillOval(75, 160, 100, 100);
+		menubackground.draw(0,0);
 		
 	}
 
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+		if (!menumusic.playing()) {
+			menumusic.play(1, (float) 1);
+			}
 		Input input = gc.getInput();
-		if(input.isKeyDown(Input.KEY_UP)) {bruhy -= 2;;}
-		if(input.isKeyDown(Input.KEY_DOWN)) {bruhy += 2;}
-		if(input.isKeyDown(Input.KEY_LEFT)) {bruhx -= 2;}
-		if(input.isKeyDown(Input.KEY_RIGHT)) {bruhx += 2;}
 		int xpos = input.getMouseX();
 		int ypos = input.getMouseY();
-		if((xpos>75 && xpos<175) && (ypos>160 && ypos < 260)) {
-			if(input.isMouseButtonDown(0)) {
-				sbg.enterState(1);
-			}
-		}
 			
-			if((xpos> 200 && xpos<400) && (ypos>200 && ypos<360)) {
+		
+			if((xpos> 100 && xpos<273) && (ypos>172 && ypos<212)) {
 				if(input.isMouseButtonDown(0)) {
+					menumusic.stop();
+					sbg.enterState(1, new FadeOutTransition(Color.black, 2000), new FadeInTransition(Color.black, 1000));
+				}
+			}
+			
+			if((xpos>124 && xpos<670) && (ypos>44 && ypos < 104)) {
+				if(input.isMouseButtonDown(0)) {
+					menumusic.stop();
 					sbg.enterState(2);
 				}
+			}
+			
+				if((xpos>528 && xpos<682) && (ypos>172 && ypos<212)) {
+					if(input.isMouseButtonDown(0)) {
+					gc.exit();
+					}
 		}
 		
 		
